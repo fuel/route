@@ -8,10 +8,10 @@
 
 declare(strict_types=1);
 
-namespace League\Route\Cache;
+namespace Fuel\Route\Cache;
 
 use InvalidArgumentException;
-use League\Route\Router as MainRouter;
+use Fuel\Route\Router as MainRouter;
 use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 use Psr\SimpleCache\CacheInterface;
 
@@ -19,7 +19,7 @@ use function Opis\Closure\{serialize as s, unserialize as u};
 
 class Router
 {
-    protected const CACHE_KEY = 'league/route/cache';
+    protected const CACHE_KEY = 'fuel/route/cache';
 
     /**
      * @var callable

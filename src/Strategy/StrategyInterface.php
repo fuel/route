@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace League\Route\Strategy;
+namespace Fuel\Route\Strategy;
 
-use League\Route\Http\Exception\{MethodNotAllowedException, NotFoundException};
-use League\Route\Route;
+use Fuel\Route\Http\Exception\{MethodNotAllowedException, NotFoundException};
+use Fuel\Route\Route;
 use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 use Psr\Http\Server\MiddlewareInterface;
 

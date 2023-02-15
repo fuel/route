@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace League\Route;
+namespace Fuel\Route;
 
 interface RouteCollectionInterface
 {

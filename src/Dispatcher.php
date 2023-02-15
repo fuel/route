@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace League\Route;
+namespace Fuel\Route;
 
 use FastRoute\Dispatcher as FastRoute;
 use FastRoute\Dispatcher\GroupCountBased as GroupCountBasedDispatcher;
-use League\Route\Http\Exception\{MethodNotAllowedException, NotFoundException};
-use League\Route\Middleware\{MiddlewareAwareInterface, MiddlewareAwareTrait};
-use League\Route\Strategy\{StrategyAwareInterface, StrategyAwareTrait, StrategyInterface};
+use Fuel\Route\Http\Exception\{MethodNotAllowedException, NotFoundException};
+use Fuel\Route\Middleware\{MiddlewareAwareInterface, MiddlewareAwareTrait};
+use Fuel\Route\Strategy\{StrategyAwareInterface, StrategyAwareTrait, StrategyInterface};
 use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 use Psr\Http\Server\RequestHandlerInterface;
 use RuntimeException;

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace League\Route\Http\Exception;
+namespace Fuel\Route\Http\Exception;
 
 use Exception;
-use League\Route\Http;
+use Fuel\Route\Http;
 
 class ForbiddenException extends Http\Exception
 {

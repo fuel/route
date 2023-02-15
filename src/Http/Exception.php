@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace League\Route\Http;
+namespace Fuel\Route\Http;
 
-use League\Route\Http\Exception\HttpExceptionInterface;
+use Fuel\Route\Http\Exception\HttpExceptionInterface;
 use Psr\Http\Message\ResponseInterface;
 
 class Exception extends \Exception implements HttpExceptionInterface

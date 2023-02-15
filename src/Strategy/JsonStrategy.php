@@ -2,13 +2,13 @@
 
 declare(strict_types=1);
 
-namespace League\Route\Strategy;
+namespace Fuel\Route\Strategy;
 
 use JsonSerializable;
-use League\Route\Http;
-use League\Route\Http\Exception\{MethodNotAllowedException, NotFoundException};
-use League\Route\Route;
-use League\Route\{ContainerAwareInterface, ContainerAwareTrait};
+use Fuel\Route\Http;
+use Fuel\Route\Http\Exception\{MethodNotAllowedException, NotFoundException};
+use Fuel\Route\Route;
+use Fuel\Route\{ContainerAwareInterface, ContainerAwareTrait};
 use Psr\Http\Message\{ResponseFactoryInterface, ResponseInterface, ServerRequestInterface};
 use Psr\Http\Server\{MiddlewareInterface, RequestHandlerInterface};
 use Throwable;

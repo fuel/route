@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace League\Route\Http\Exception;
+namespace Fuel\Route\Http\Exception;
 
 use Psr\Http\Message\ResponseInterface;
 

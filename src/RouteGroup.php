@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace League\Route;
+namespace Fuel\Route;
 
-use League\Route\Middleware\{MiddlewareAwareInterface, MiddlewareAwareTrait};
-use League\Route\Strategy\{StrategyAwareInterface, StrategyAwareTrait};
+use Fuel\Route\Middleware\{MiddlewareAwareInterface, MiddlewareAwareTrait};
+use Fuel\Route\Strategy\{StrategyAwareInterface, StrategyAwareTrait};
 
 class RouteGroup implements
     MiddlewareAwareInterface,

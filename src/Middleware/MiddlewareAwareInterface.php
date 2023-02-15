@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace League\Route\Middleware;
+namespace Fuel\Route\Middleware;
 
 use Psr\Http\Server\MiddlewareInterface;
 

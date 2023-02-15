@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace League\Route\Http\Response\Decorator;
+namespace Fuel\Route\Http\Response\Decorator;
 
 use Psr\Http\Message\ResponseInterface;
 

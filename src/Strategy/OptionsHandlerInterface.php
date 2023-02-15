@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace League\Route\Strategy;
+namespace Fuel\Route\Strategy;
 
 interface OptionsHandlerInterface
 {

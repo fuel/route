@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace League\Route\Cache;
+namespace Fuel\Route\Cache;
 
 use Psr\SimpleCache\CacheInterface;
 

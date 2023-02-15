@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace League\Route;
+namespace Fuel\Route;
 
 use FastRoute\{DataGenerator, RouteCollector, RouteParser};
 use InvalidArgumentException;
-use League\Route\Middleware\{MiddlewareAwareInterface, MiddlewareAwareTrait};
-use League\Route\Strategy\{ApplicationStrategy, OptionsHandlerInterface, StrategyAwareInterface, StrategyAwareTrait};
+use Fuel\Route\Middleware\{MiddlewareAwareInterface, MiddlewareAwareTrait};
+use Fuel\Route\Strategy\{ApplicationStrategy, OptionsHandlerInterface, StrategyAwareInterface, StrategyAwareTrait};
 use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 use Psr\Http\Server\RequestHandlerInterface;
 

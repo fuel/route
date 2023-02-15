@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace League\Route;
+namespace Fuel\Route;
 
-use League\Route\Middleware\{MiddlewareAwareInterface, MiddlewareAwareTrait};
-use League\Route\Strategy\{StrategyAwareInterface, StrategyAwareTrait, StrategyInterface};
+use Fuel\Route\Middleware\{MiddlewareAwareInterface, MiddlewareAwareTrait};
+use Fuel\Route\Strategy\{StrategyAwareInterface, StrategyAwareTrait, StrategyInterface};
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 use Psr\Http\Server\{MiddlewareInterface, RequestHandlerInterface};
