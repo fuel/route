@@ -16,7 +16,7 @@ namespace Fuel\Route;
 
 trait RouteCollectionTrait
 {
-    abstract public function map(string $method, string $path, $handler): Route;
+    abstract public function map(string $method, string $path, mixed $handler = null): Route;
 
     public function delete(string $path, $handler): Route
     {

@@ -123,7 +123,7 @@ class Router implements
 
     /**
      */
-    public function map(string $method, string $path, $handler): Route
+    public function map(string $method, string $path, mixed $handler = null): Route
     {
         $path  = sprintf('/%s', ltrim($path, '/'));
         $route = new Route($method, $path, $handler);

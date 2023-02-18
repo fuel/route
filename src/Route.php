@@ -50,7 +50,7 @@ class Route implements RouteConditionHandlerInterface
 
     /**
      */
-    public function __construct(string $method, string $path, $handler)
+    public function __construct(string $method, string $path, mixed $handler)
     {
         $this->method  = $method;
         $this->path    = $path;

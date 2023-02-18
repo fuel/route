@@ -17,6 +17,7 @@ namespace Fuel\Route;
 use FastRoute\Dispatcher as FastRoute;
 use FastRoute\Dispatcher\GroupCountBased as GroupCountBasedDispatcher;
 use Psr\Http\Message\ServerRequestInterface;
+use Fuel\Http\Message\Uri;
 use RuntimeException;
 
 /**
@@ -42,6 +43,10 @@ class Dispatcher extends GroupCountBasedDispatcher implements RouteConditionHand
                 $route = $this->ensureHandlerIsRoute($match[1], $method, $uri)->setVars($match[2]);
                 if ($this->isExtraConditionMatch($route, $request))
                 {
+                    if ($forward = $route->getForwardedTo())
+                    {
+                        return $this->dispatchRequest($request->withUri(new Uri($forward), true));
+                    }
                     return $route;
                 }
                 break;

@@ -39,6 +39,11 @@ trait RouteConditionHandlerTrait
      */
     protected $scheme;
 
+    /**
+     * @var ?string
+     */
+    protected $alias;
+
     public function getHost(): ?string
     {
         return $this->host;
@@ -57,6 +62,11 @@ trait RouteConditionHandlerTrait
     public function getScheme(): ?string
     {
         return $this->scheme;
+    }
+
+    public function getForwardedTo(): ?string
+    {
+        return $this->alias;
     }
 
     public function setHost(string $host): RouteConditionHandlerInterface
@@ -80,6 +90,12 @@ trait RouteConditionHandlerTrait
     public function setScheme(string $scheme): RouteConditionHandlerInterface
     {
         $this->scheme = $scheme;
+        return $this->checkAndReturnSelf();
+    }
+
+    public function setForwardedTo(string $alias): RouteConditionHandlerInterface
+    {
+        $this->alias = $alias;
         return $this->checkAndReturnSelf();
     }
 
