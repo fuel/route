@@ -14,19 +14,12 @@
 
 namespace Fuel\Route;
 
-use Fuel\Route\Middleware\{MiddlewareAwareInterface, MiddlewareAwareTrait};
-use Fuel\Route\Strategy\{StrategyAwareInterface, StrategyAwareTrait};
-
 class RouteGroup implements
-    MiddlewareAwareInterface,
     RouteCollectionInterface,
-    RouteConditionHandlerInterface,
-    StrategyAwareInterface
+    RouteConditionHandlerInterface
 {
-    use MiddlewareAwareTrait;
     use RouteCollectionTrait;
     use RouteConditionHandlerTrait;
-    use StrategyAwareTrait;
 
     /**
      * @var callable
@@ -77,10 +70,6 @@ class RouteGroup implements
 
         if ($port = $this->getPort()) {
             $route->setPort($port);
-        }
-
-        if ($route->getStrategy() === null && $this->getStrategy() !== null) {
-            $route->setStrategy($this->getStrategy());
         }
 
         return $route;

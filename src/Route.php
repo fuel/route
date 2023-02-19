@@ -16,7 +16,6 @@ namespace Fuel\Route;
 
 use Psr\Container\ContainerInterface;
 use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
-use Psr\Http\Server\{MiddlewareInterface, RequestHandlerInterface};
 use RuntimeException;
 
 class Route implements RouteConditionHandlerInterface
