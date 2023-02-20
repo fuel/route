@@ -40,6 +40,8 @@
     "require-dev": {
         "roave/security-advisories": "dev-latest"
     },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "provide": {
         "psr/http-server-middleware-implementation": "1.0"
     },
