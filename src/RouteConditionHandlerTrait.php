@@ -64,7 +64,7 @@ trait RouteConditionHandlerTrait
         return $this->scheme;
     }
 
-    public function getForwardedTo(): ?string
+    public function getForwardTo(): ?string
     {
         return $this->alias;
     }
@@ -93,7 +93,7 @@ trait RouteConditionHandlerTrait
         return $this->checkAndReturnSelf();
     }
 
-    public function setForwardedTo(string $alias): RouteConditionHandlerInterface
+    public function setForwardTo(string $alias): RouteConditionHandlerInterface
     {
         $this->alias = $alias;
         return $this->checkAndReturnSelf();
