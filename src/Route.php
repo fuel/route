@@ -14,9 +14,11 @@
 
 namespace Fuel\Route;
 
-use Psr\Container\ContainerInterface;
-use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
+use ReflectionClass;
 use RuntimeException;
+use Psr\Container\ContainerInterface;
+use Fuel\Framework\ControllerInterface;
+use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 
 class Route implements RouteConditionHandlerInterface
 {
@@ -84,7 +86,7 @@ class Route implements RouteConditionHandlerInterface
 
         if ( ! is_callable($callable))
         {
-            throw new RuntimeException('Could not resolve a callable for this route');
+            throw new RuntimeException('Could not resolve the callable for this route');
         }
 
         return $callable;
@@ -209,14 +211,29 @@ class Route implements RouteConditionHandlerInterface
     {
         if ($container instanceof ContainerInterface && $container->has($class))
         {
+            // in the container, return the instance
             return $container->get($class);
         }
 
         if (class_exists($class))
         {
+            // reflect on the class
+            $reflected = new ReflectionClass($class);
+
+            // check if this is a Fuel controller
+            if (in_array(ControllerInterface::class, $reflected->getInterfaceNames()))
+            {
+                // dynamically add the controller to the container
+                $container->add($reflected->getName());
+                // and return the instance
+                return $container->get($reflected->getName());
+            }
+
+            // return a new class instance
             return new $class();
         }
 
+        // couldn't resolve, class does not exist
         return $class;
     }
 }

@@ -16,17 +16,17 @@ namespace Fuel\Route;
 
 use FastRoute\{DataGenerator, RouteCollector, RouteParser};
 use InvalidArgumentException;
+use Fuel\Framework\ControllerInterface;
+use Fuel\Http\Response\ResponseFactory;
 use Psr\Http\Message\{ResponseInterface, ServerRequestInterface};
 use Psr\Http\Server\{RequestHandlerInterface, MiddlewareInterface};
-use Fuel\Container\{ContainerAwareInterface, ContainerAwareTrait};
+use Psr\Container\ContainerInterface;
 
 class Router implements
     MiddlewareInterface,
-    ContainerAwareInterface,
     RouteCollectionInterface,
     RouteConditionHandlerInterface
 {
-    use ContainerAwareTrait;
     use RouteCollectionTrait;
     use RouteConditionHandlerTrait;
 
@@ -54,9 +54,14 @@ class Router implements
     ];
 
     /**
+     * @var Container
+     */
+    protected ContainerInterface $container;
+
+    /**
      * @var RouteCollector
      */
-    protected $routeCollector;
+    protected RouteCollector $routeCollector;
 
     /**
      * @var Route[]
@@ -75,8 +80,10 @@ class Router implements
 
     /**
      */
-    public function __construct(?RouteCollector $routeCollector = null)
+    public function __construct(ContainerInterface $container, ?RouteCollector $routeCollector = null)
     {
+        $this->container = $container;
+
         $this->routeCollector = $routeCollector ?? new RouteCollector(
             new RouteParser\Std(),
             new DataGenerator\GroupCountBased()
@@ -148,19 +155,45 @@ class Router implements
         $dispatcher = (new Dispatcher($this->routesData));
 
         // check if we can get a match on a route
-        $route = $dispatcher->dispatchRequest($request);
+        $result = $dispatcher->dispatchRequest($request);
 
-        if ( ! $route)
+        // if we got a request back
+        if ($result instanceOf ServerRequestInterface)
         {
-            // if not, pass the request on to the next handler
-            return $handler->handle($request);
+            // process the new request
+            return $this->process($result, $handler);
         }
 
-        // route match! get the controller from it
-        $controller = $route->getCallable($this->container);
+        // if we got a route back
+        elseif ($result instanceOf Route)
+        {
+            // route match! get the controller from it
+            $controller = $result->getCallable($this->container);
 
-        // call it, return the response
-        $response = $controller($request, $route->getVars());
+            // is this a Fuel Controller we've been routed too?
+            if ($controller instanceOf ControllerInterface)
+            {
+                // add the name of controller to the request
+                $controller->setRequest($request = $request->withAttribute('controller', get_class($controller)));
+
+                // call it
+                $response = $controller(...$result->getVars());
+
+                // returned value must be a valid response
+                if ( ! $response instanceOf ResponseInterface)
+                {
+                    return (new ResponseFactory)->createDynamicResponse($request, $response);
+                }
+
+                return $response;
+            }
+
+            // call it, return the response
+            return $controller($request, $result->getVars());
+        }
+
+        // if not, pass the request on to the next handler
+        return $handler->handle($request);
     }
 
     /**
