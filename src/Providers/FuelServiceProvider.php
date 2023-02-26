@@ -14,6 +14,7 @@
 namespace Fuel\Route\Providers;
 
 use Fuel\Route\Router;
+use Fuel\Container\Container;
 use Fuel\Container\ServiceProvider\{AbstractServiceProvider, BootableServiceProviderInterface};
 
 /**
@@ -66,6 +67,7 @@ class FuelServiceProvider extends AbstractServiceProvider implements BootableSer
     {
        $this->getContainer()
             ->add(Router::class)
+                ->addArgument(Container::class)
             ->setShared();
     }
 }
